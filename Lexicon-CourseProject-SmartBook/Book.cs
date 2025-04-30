@@ -14,25 +14,25 @@ namespace Lexicon_CourseProject_SmartBook
         internal string Author
         {
             get => _author;
-            set => _author = CheckIfNullOrEmpty(value, nameof(Author));
+            set => _author = GeneralHelpers.CheckIfNullOrEmptyWithException(value, nameof(Author));
         }
 
         internal string Title
         {
             get => _title;
-            set => _title = CheckIfNullOrEmpty(value, nameof(Title));
+            set => _title = GeneralHelpers.CheckIfNullOrEmptyWithException(value, nameof(Title));
         }
 
         internal uint Year
         {
             get => _year;
-            set => _year = GeneralHelpers.ValidatePositiveUint(value, nameof(Year));
+            set => _year = GeneralHelpers.ValidatePositiveUintWithException(value, nameof(Year));
         }
 
         internal string Genre
         {
             get => _genre;
-            set => _genre = CheckIfNullOrEmpty(value, nameof(Genre));
+            set => _genre = GeneralHelpers.CheckIfNullOrEmptyWithException(value, nameof(Genre));
         }
 
         internal string ISBN
@@ -40,19 +40,17 @@ namespace Lexicon_CourseProject_SmartBook
             get => _isbn;
             set
             {
-                if (Year >= 1970)
+                if (IsValidISBN(value))
                 {
-                    if (IsValidISBN(value, Year))
-                        _isbn = value;
-                    else
-                        throw new ArgumentException("Invalid ISBN format.");
+                    _isbn = value;
                 }
                 else
                 {
-                    _isbn = "N/A";
+                    throw new ArgumentException("Invalid ISBN format.");
                 }
             }
         }
+
 
         // Constructor
         public Book(string author, string title, uint year, string genre, string isbn)
@@ -67,24 +65,15 @@ namespace Lexicon_CourseProject_SmartBook
         // Override ToString method
         public override string ToString()
         {
-            return $"{Author.PadRight(30)}{Title.PadRight(45)}{Year.ToString().PadRight(10)}{Genre.PadRight(15)}{ISBN}";
+            return $"{Author,-25}{Title,-50}{Year,-10}{Genre,-15}{ISBN}";
         }
 
-        // Validate if string is null or empty
-        internal static string CheckIfNullOrEmpty(string value, string fieldName)
-        {
-            if (string.IsNullOrWhiteSpace(value))
-                throw new ArgumentException($"{fieldName} cannot be empty.");
-            else
-                return value.Trim();
-        }
 
         // Validate ISBN
-        public static bool IsValidISBN(string isbn, uint year)
+        public static bool IsValidISBN(string isbn)
         {
             // For ISBN-13
-            // Check if the year is 2007 or later, and if the ISBN is 13 characters long
-            if (isbn.Length == 13 && year >= 2007)
+            if (isbn.Length == 13)
             {
                 if (isbn.All(char.IsDigit))
                 {
@@ -93,8 +82,7 @@ namespace Lexicon_CourseProject_SmartBook
             }
 
             // For ISBN-10
-            // Check if the year is before 2007, if the ISBN is 10 characters long
-            if (isbn.Length == 10 && year < 2007)
+            if (isbn.Length == 10)
             {
                 // Check if the first 9 characters are digits and the last character is either 'X' or a digit
                 if (isbn.Substring(0, 9).All(char.IsDigit) &&

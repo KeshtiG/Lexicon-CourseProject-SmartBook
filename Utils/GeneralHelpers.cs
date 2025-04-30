@@ -17,7 +17,7 @@ namespace Utils
             Console.Clear();
         }
 
-        public static uint ValidatePositiveUint(uint input, string type)
+        public static uint ValidatePositiveUintWithException(uint input, string type)
         {
             if (input > 0)
             {
@@ -27,6 +27,15 @@ namespace Utils
             {
                 throw new ArgumentException($"Error: {type} must be a positive number.");
             }
+        }
+
+        // Validate if string is null or empty
+        public static string CheckIfNullOrEmptyWithException(string value, string type)
+        {
+            if (string.IsNullOrWhiteSpace(value))
+                throw new ArgumentException($"{type} cannot be empty.");
+            else
+                return value.Trim();
         }
     }
 }
