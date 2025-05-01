@@ -13,7 +13,6 @@ and save the current library to a JSON file.
 
 - Open the solution in Visual Studio using the file Lexicon-CourseProject-SmartBook.sln.
 - Run the program by pressing CTRL + F5 or using the Start menu.
-- To load a library with sample books, select option 6: "Load library from file".
 
 ---
 
