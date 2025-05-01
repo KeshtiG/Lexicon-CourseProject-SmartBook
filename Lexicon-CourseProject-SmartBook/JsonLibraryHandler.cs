@@ -16,20 +16,8 @@ namespace Lexicon_CourseProject_SmartBook
             // Create a reference to the current library list by calling the method that returns it
             List<Book> library = Library.GetBookList();
 
-            // Define the folder path within the current directory
-            string folderPath = Path.Combine(Environment.CurrentDirectory, "Json");
-
-            // Combine the folder path with the file name
-            string filePath = Path.Combine(folderPath, "library.json");
-
-            // Create the foler if it doesn't exist
-            if (!Directory.Exists(folderPath))
-            {
-                Directory.CreateDirectory(folderPath);
-            }
-
             // Convert the library to JSON format and save it to the specified file and path
-            File.WriteAllText(filePath, JsonSerializer.Serialize(library));
+            File.WriteAllText("library.json", JsonSerializer.Serialize(library));
 
             // Display a message indicating that the library has been saved
             Console.WriteLine("Library saved to JSON file.");
@@ -39,7 +27,7 @@ namespace Lexicon_CourseProject_SmartBook
         internal static void LoadLibraryFromJson()
         {
             // Check if the JSON file exists before attempting to read it
-            if (!File.Exists("Json/library.json"))
+            if (!File.Exists("library.json"))
             {
                 Console.WriteLine("No library file found.");
                 GeneralHelpers.ClearConsole("Press enter to continue...");
@@ -47,7 +35,7 @@ namespace Lexicon_CourseProject_SmartBook
             }
 
             // Read the JSON file and deserialize it into a list of books
-            List<Book>? loadedLibrary = JsonSerializer.Deserialize<List<Book>>(File.ReadAllText("Json/library.json"));
+            List<Book>? loadedLibrary = JsonSerializer.Deserialize<List<Book>>(File.ReadAllText("library.json"));
 
             // Check if the loaded library file contains something
             if (loadedLibrary != null)
