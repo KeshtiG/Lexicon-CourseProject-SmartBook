@@ -27,7 +27,7 @@ internal static class SmartBookApp
                 
                 // Remove a book
                 case "2":
-                    Library.RemoveBook();
+                    Library.GetBookToRemove();
                     break;
 
                 // View all books
@@ -38,6 +38,21 @@ internal static class SmartBookApp
                 // Search for a book
                 case "4":
                     SearchFunction.HandleSearchMenu();
+                    break;
+
+                // Change availability of a book
+                case "5":
+                    Library.GetBookForAvailability();
+                    break;
+
+                // Load library from Json
+                case "6":
+                    JsonLibraryHandler.LoadLibraryFromJson();
+                    break;
+
+                // Save library to Json
+                case "7":
+                    JsonLibraryHandler.SaveLibraryToJson();
                     break;
 
                 // Exit the application
@@ -66,6 +81,9 @@ internal static class SmartBookApp
         Console.WriteLine("2. Remove a book");
         Console.WriteLine("3. View and sort books");
         Console.WriteLine("4. Search for a book");
+        Console.WriteLine("5. Change availability of a book");
+        Console.WriteLine("6. Read library from file");
+        Console.WriteLine("7. Write library to file");
         Console.WriteLine();
         Console.WriteLine("Q. Exit the application");
         Console.WriteLine("");

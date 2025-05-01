@@ -57,19 +57,28 @@ internal class SortAndList
             // Call DisplayAllBooks with the chosen sorting
             switch (choice)
             {
+                // Sort by author
                 case "1":
                     ShowBookList("author");
                     break;
+
+                // Sort by title
                 case "2":
                     ShowBookList("title");
                     break;
+
+                // Sort by year
                 case "3":
                     ShowBookList("year");
                     break;
+
+                // Quit to main menu
                 case "q":
                     exit = true;
                     Console.Clear();
-                    return;
+                    break;
+
+                // Handle invalid input
                 default:
                     Console.WriteLine("Invalid choice. Please choose an option from the list.");
                     GeneralHelpers.ClearConsole("Press enter to continue...");
@@ -97,9 +106,11 @@ internal class SortAndList
     // Display the headings for the book list
     internal static void DisplayBookListHeadings()
     {
-        string author = "Autor", title = "Title", year = "Year", genre = "Genre", isbn = "ISBN";
-        Console.Write($"{author,-25}{title,-50}{year,-10}{genre,-15}{isbn}");
+        // Display the formated headings for the book list with padding
+        Console.Write($"{"Author", -25}{"Title", -50}{"Year", -10}{"Genre", -15}" +
+            $"{"ISBN", -20}{"Availability", -15}");
         Console.WriteLine();
-        Console.WriteLine("-----------------------------------------------------------------------------------------------------------------");
+        Console.WriteLine("---------------------------------------------------------------" +
+            "---------------------------------------------------------------------");
     }
 }

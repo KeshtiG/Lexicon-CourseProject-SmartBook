@@ -4,6 +4,7 @@ internal class Program
 {
     static void Main(string[] args)
     {
+        // Start the app by calling the HandleMainMenu method
         SmartBookApp.HandleMainMenu();
     }
 }

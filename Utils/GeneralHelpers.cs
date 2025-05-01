@@ -17,19 +17,22 @@ namespace Utils
             Console.Clear();
         }
 
+        // Validate if input is a positive integer and throw exception if not
         public static uint ValidatePositiveUintWithException(uint input, string type)
         {
+            // Check if input is a positive number
             if (input > 0)
             {
                 return input;
             }
             else
             {
+                // Throw an exception if input is not a positive number
                 throw new ArgumentException($"Error: {type} must be a positive number.");
             }
         }
 
-        // Validate if string is null or empty
+        // Validate if string is null or empty and throw exception if it is
         public static string CheckIfNullOrEmptyWithException(string value, string type)
         {
             if (string.IsNullOrWhiteSpace(value))

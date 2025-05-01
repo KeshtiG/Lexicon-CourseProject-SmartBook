@@ -4,38 +4,40 @@ namespace Lexicon_CourseProject_SmartBook
 {
     public class Book
     {
+        // Fields
         private string _author = string.Empty;
         private string _title = string.Empty;
         private uint _year;
         private string _genre = string.Empty;
         private string _isbn = string.Empty;
+        private bool _isAvailable;
 
-
-        internal string Author
+        // Properties
+        public string Author
         {
             get => _author;
             set => _author = GeneralHelpers.CheckIfNullOrEmptyWithException(value, nameof(Author));
         }
 
-        internal string Title
+        public string Title
         {
             get => _title;
             set => _title = GeneralHelpers.CheckIfNullOrEmptyWithException(value, nameof(Title));
         }
 
-        internal uint Year
+        public uint Year
         {
             get => _year;
             set => _year = GeneralHelpers.ValidatePositiveUintWithException(value, nameof(Year));
         }
 
-        internal string Genre
+        public string Genre
         {
             get => _genre;
             set => _genre = GeneralHelpers.CheckIfNullOrEmptyWithException(value, nameof(Genre));
         }
 
-        internal string ISBN
+        public string ISBN
         {
             get => _isbn;
             set
@@ -51,6 +53,11 @@ namespace Lexicon_CourseProject_SmartBook
             }
         }
 
+        public bool IsAvailable
+        {
+            get => _isAvailable;
+            set => _isAvailable = value;
+        }
 
         // Constructor
         public Book(string author, string title, uint year, string genre, string isbn)
@@ -60,12 +67,27 @@ namespace Lexicon_CourseProject_SmartBook
             Year = year;
             Genre = genre;
             ISBN = isbn;
+            IsAvailable = true;
+        }
+
+        // Return avalability status in a readable format
+        public static string GetAvailability(Book book)
+        {
+            if (book.IsAvailable)
+            {
+                return "✓ Available";
+            }
+            else
+            {
+                return "X Unavailable";
+            }
         }
 
         // Override ToString method
         public override string ToString()
         {
-            return $"{Author,-25}{Title,-50}{Year,-10}{Genre,-15}{ISBN}";
+            // Return a string with formatted book details and padding
+            return $"{Author, -25}{Title, -50}{Year, -10}{Genre, -15}{ISBN, -20}{GetAvailability(this), -15}";
         }
 
 
@@ -75,6 +97,7 @@ namespace Lexicon_CourseProject_SmartBook
             // For ISBN-13
             if (isbn.Length == 13)
             {
+                // Check if all characters are digits
                 if (isbn.All(char.IsDigit))
                 {
                     return true;
