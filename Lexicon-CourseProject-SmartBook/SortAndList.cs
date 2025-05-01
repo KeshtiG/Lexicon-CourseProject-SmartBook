@@ -107,10 +107,10 @@ internal class SortAndList
     internal static void DisplayBookListHeadings()
     {
         // Display the formated headings for the book list with padding
-        Console.Write($"{"Author", -25}{"Title", -50}{"Year", -10}{"Genre", -15}" +
+        Console.Write($"{"Author", -25}{"Title", -45}{"Year", -10}{"Genre", -25}" +
             $"{"ISBN", -20}{"Availability", -15}");
         Console.WriteLine();
         Console.WriteLine("---------------------------------------------------------------" +
-            "---------------------------------------------------------------------");
+            "--------------------------------------------------------------------------");
     }
 }

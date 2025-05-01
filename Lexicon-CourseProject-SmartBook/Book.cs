@@ -87,7 +87,7 @@ namespace Lexicon_CourseProject_SmartBook
         public override string ToString()
         {
             // Return a string with formatted book details and padding
-            return $"{Author, -25}{Title, -50}{Year, -10}{Genre, -15}{ISBN, -20}{GetAvailability(this), -15}";
+            return $"{Author, -25}{Title, -45}{Year, -10}{Genre, -25}{ISBN, -20}{GetAvailability(this), -15}";
         }
 
 

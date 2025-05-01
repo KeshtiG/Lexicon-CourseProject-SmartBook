@@ -82,8 +82,8 @@ internal static class SmartBookApp
         Console.WriteLine("3. View and sort books");
         Console.WriteLine("4. Search for a book");
         Console.WriteLine("5. Change availability of a book");
-        Console.WriteLine("6. Read library from file");
-        Console.WriteLine("7. Write library to file");
+        Console.WriteLine("6. Load library from file");
+        Console.WriteLine("7. Save library to file");
         Console.WriteLine();
         Console.WriteLine("Q. Exit the application");
         Console.WriteLine("");

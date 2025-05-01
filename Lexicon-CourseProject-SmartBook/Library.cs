@@ -11,8 +11,8 @@ namespace Lexicon_CourseProject_SmartBook;
 
 public class Library
 {
-    // Create an empty list to store books
-    private static List<Book> books = new List<Book>();
+    // Make the 'books' field readonly
+    private static readonly List<Book> books = new List<Book>();
 
     // Method to get the list of books
     public static List<Book> GetBookList()
